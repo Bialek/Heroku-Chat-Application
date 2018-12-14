@@ -23,19 +23,24 @@ class App extends Component {
 	componentDidMount() {
 		socket.on('message', message => this.messageReceive(message));
 		socket.on('update', ({users}) => this.chatUpdate(users));
+		this.scrollToBottom();
 	}
 
 	messageReceive(message) {
-		const messages = [message, ...this.state.messages];
+		const messages = [...this.state.messages, message];
 		this.setState({messages});
 	}
+
+	scrollToBottom = () => {
+		this.el.scrollIntoView({ behavior: 'smooth' });
+	  }
 
 	chatUpdate(users) {
 		this.setState({users});
 	}
 
 	handleMessageSubmit(message) {
-		const messages = [message, ...this.state.messages];
+		const messages = [...this.state.messages, message];
 		this.setState({messages});
 		socket.emit('message', message);
 	}
@@ -55,7 +60,7 @@ class App extends Component {
 	
 	renderLayout() { 
 		return (
-			<div className = {styles.App}>
+			<div ref={el => { this.el = el; }} className = {styles.App}>
 				<div className = {styles.Header}>
 					<div className = {styles.AppTitle}>
 						ChatLogo
@@ -73,8 +78,8 @@ class App extends Component {
 							messages = {this.state.messages}
 						/>
 						<MessageForm
-							onMessageSubmit = {message =>
-								this.handleMessageSubmit(message)}
+							onMessageSubmit = 
+								{ message => this.handleMessageSubmit(message)}
 								name = {this.state.name}
 								color = {this.state.color}
 						/>
