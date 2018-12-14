@@ -1,0 +1,21 @@
+.UserForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: white;
+    
+}
+.UserInput {
+    padding: 20px;
+    font-size: 2em;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    color: #ccc;
+}
+.UserInput:active, .UserInput:hover, .UserInput:target, .UserInput:visited {
+    border-bottom-color: black;
+    color: black;
+}
