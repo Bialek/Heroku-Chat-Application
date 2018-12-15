@@ -20,9 +20,7 @@ class App extends Component {
 		};
 	}
 
-	messagesEnd = React.createRef()
-
-	componentDidMount() {
+	componentWillMount() {
 		socket.on('message', message => this.messageReceive(message));
 		socket.on('update', ({users}) => this.chatUpdate(users));
 	}

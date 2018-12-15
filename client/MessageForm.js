@@ -10,12 +10,14 @@ class MessageForm extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		const message = {
-			from : this.props.name,
-			text : this.state.text,
-			color: this.props.color
-		};
-		this.props.onMessageSubmit(message);
+		if (this.state.text  !== '') {
+			const message = {
+				from : this.props.name,
+				text : this.state.text,
+				color: this.props.color
+			};
+			this.props.onMessageSubmit(message);
+		}	
 		this.setState({ text: '' });
 	}
 
