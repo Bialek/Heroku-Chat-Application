@@ -26,7 +26,7 @@ class UserForm extends Component {
 			<form className={styles.UserForm} onSubmit={e => this.handleSubmit(e)}>
 				<input
 					className={styles.UserInput}
-					placeholder='Write your nickname and press enter'
+					placeholder='Write your nickname and press enter to join chat'
 					onChange={e => this.handleChange(e)}
 					value={this.state.name}
 				/>

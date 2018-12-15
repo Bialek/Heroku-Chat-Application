@@ -34,6 +34,7 @@
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
     "style-loader": "^0.21.0",
+    "styled-components": "^4.1.2",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-parse": ">=1.4.3",
     "webpack": "^3.10.0",

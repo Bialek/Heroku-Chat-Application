@@ -11,7 +11,7 @@ const userService = new UsersService();
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req, res) {
+app.get('/', function() {
     app.sendFile(__dirname + '/index.html');
 });
 
