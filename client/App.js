@@ -20,20 +20,17 @@ class App extends Component {
 		};
 	}
 
+	messagesEnd = React.createRef()
+
 	componentDidMount() {
 		socket.on('message', message => this.messageReceive(message));
 		socket.on('update', ({users}) => this.chatUpdate(users));
-		this.scrollToBottom();
 	}
 
 	messageReceive(message) {
 		const messages = [...this.state.messages, message];
 		this.setState({messages});
 	}
-
-	scrollToBottom = () => {
-		this.el.scrollIntoView({ behavior: 'smooth' });
-	  }
 
 	chatUpdate(users) {
 		this.setState({users});
@@ -60,7 +57,7 @@ class App extends Component {
 	
 	renderLayout() { 
 		return (
-			<div ref={el => { this.el = el; }} className = {styles.App}>
+			<div className = {styles.App}>
 				<div className = {styles.Header}>
 					<div className = {styles.AppTitle}>
 						ChatLogo
