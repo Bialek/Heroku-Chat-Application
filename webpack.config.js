@@ -42,7 +42,7 @@ module.exports = {
 				exclude: /node_modules/, 
 				query: { 
 					presets: ["es2015", "react", "stage-2"], 
-					plugins: ["react-hot-loader/babel"] 
+					plugins: ["react-hot-loader/babel",'babel-plugin-styled-components'] 
 				}
 			},
 			{

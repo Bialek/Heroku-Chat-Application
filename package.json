@@ -39,5 +39,8 @@
     "url-parse": ">=1.4.3",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^3.1.10"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.9.4"
   }
 }

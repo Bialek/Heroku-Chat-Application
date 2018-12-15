@@ -1,13 +1,13 @@
 import React from 'react';
-import styles from './css/MessageList.css';
+import { MessageWrapper, MessageText } from './Styled-Components/Message';
 
 const Message = props => { 
-return(
-	<div className={styles.Message} style={{backgroundColor: props.color}}>
-		<strong>{props.from}: </strong>
-		<span>{props.text}</span>
-	</div>
-);
+	return (
+		<MessageWrapper color={props.color} >
+			<MessageText author>{props.from}: </MessageText>
+			<MessageText>{props.text}</MessageText>
+		</MessageWrapper>
+	);
 }    
 
 export default Message;
