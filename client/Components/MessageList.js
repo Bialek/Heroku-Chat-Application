@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import styles from './css/MessageList.css';
 import Message from './Message';
+
+import { MessagesList } from '../Styled-Components/MessageList';
 
 
 class MessageList extends Component {
@@ -31,20 +32,19 @@ class MessageList extends Component {
 
 	render() {
 		return (
-			<div className={styles.MessageList}>
+			<MessagesList>
 				{
 					this.state.List.map((message, i) =>  (
-							<Message
-								key={i}
-								color={message.color}
-								from={message.from}
-								text={message.text}
-							/>
-						)
-					)
+						<Message
+							key={i}
+							color={message.color}
+							from={message.from}
+							text={message.text}
+						/>
+					))
 				}
 				<div ref={el => { this.el = el; }} />
-			</div>
+			</MessagesList>
 		)
 	}
 }

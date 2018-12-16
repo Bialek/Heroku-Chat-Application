@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import styles from './css/App.css';
-import MessageForm from './MessageForm.js';
-import MessageList from './MessageList.js';
-import UsersList from './UsersList.js';
-import UserForm from './UserForm.js';
+import MessageForm from './Components/MessageForm.js';
+import MessageList from './Components/MessageList.js';
+import UsersList from './Components/UsersList.js';
+import UserForm from './Components/UserForm.js';
 
 const socket = io('/');
 
