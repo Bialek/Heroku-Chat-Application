@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
+import { Form, MessageInput, MessageBtn  } from '../Styled-Components/Form';
 
-import styles from '../css/MessageForm.css';
 
 class MessageForm extends Component {
 	constructor(props) {
@@ -27,19 +27,16 @@ class MessageForm extends Component {
 
 	render() { 
 		return(
-			<form className={styles.MessageForm} onSubmit={e => this.handleSubmit(e)}>
-				<input
-					className={styles.MessageInput}
+			<Form onSubmit={e => this.handleSubmit(e)}>
+				<MessageInput
 					onChange={e => this.changeHandler(e)}
 					value={this.state.text}
-					placeholder='Message'
+					placeholder='Your Message text'
 				/>
-				<input
-					className={styles.MessageBtn}
-					type='submit'
-					value='send'
-				/>
-			</form>
+				<MessageBtn type='submit'>
+					Send
+				</MessageBtn>
+			</Form>
 		);
 	}
 }

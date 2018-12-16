@@ -20,7 +20,7 @@ class App extends Component {
 		};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		socket.on('message', message => this.messageReceive(message));
 		socket.on('update', ({users}) => this.chatUpdate(users));
 	}
@@ -32,11 +32,6 @@ class App extends Component {
 
 	chatUpdate(users) {
 		this.setState({users});
-	}
-
-	componentWillUnmount() {
-		socket.on('message', message => this.messageReceive(message));
-		socket.on('update', ({users}) => this.chatUpdate(users));
 	}
 	
 	handleMessageSubmit(message) {
