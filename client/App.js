@@ -5,6 +5,11 @@ import MessageForm from './Components/MessageForm.js';
 import MessageList from './Components/MessageList.js';
 import UsersList from './Components/UsersList.js';
 import UserForm from './Components/UserForm.js';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faMoon, faSun)
 
 const socket = io('/');
 
@@ -16,11 +21,12 @@ class App extends Component {
 			messages: [],
 			text: '',
 			name: '',
-			color: ''
+			color: '',
+			darkThema: false
 		};
 	}
 
-	componentDidMount() {
+	componentDidMount = () => {
 		socket.on('message', message => this.messageReceive(message));
 		socket.on('update', ({users}) => this.chatUpdate(users));
 	}
@@ -47,13 +53,18 @@ class App extends Component {
 
 	handleUserColor(color) {
         this.setState({color});
-    }
+	}
+	
+	ThemaOnclickHandler = () => {
+		(!this.state.darkThema) ? this.setState({darkThema: true}) : this.setState({darkThema: false});
+	}
 
 	render() { 
 		return this.state.name !== '' ? this.renderLayout () : this.renderUserForm()
 	}
 	
-	renderLayout() { 
+	renderLayout() { console.log(this.state.darkThema);
+	
 		return (
 			<div className = {styles.App}>
 				<div className = {styles.Header}>
@@ -62,6 +73,9 @@ class App extends Component {
 					</div>
 					<div className = {styles.AppRoom}>
 						Chat room 
+						<span onClick={this.ThemaOnclickHandler}>
+							{this.state.darkThema ? <FontAwesomeIcon icon='moon' /> : <FontAwesomeIcon icon='sun' />}
+						</span>
 					</div>
 				</div>
 				<div className = {styles.AppBody}>
