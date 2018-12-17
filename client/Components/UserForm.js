@@ -8,6 +8,7 @@ class UserForm extends Component {
 			name: '',
 	  		color: ''
 		};
+		this.inputRef = React.createRef();
   	}
 
 	handleSubmit = (e) => {
@@ -25,6 +26,8 @@ class UserForm extends Component {
 		return(
 			<Login onSubmit={this.handleSubmit}>
 				<LoginInput
+					ref={this.inputRef}
+					onMouseEnter={() => {this.inputRef.current.focus()}}
 					placeholder='Write your nickname and press enter to join chat'
 					onChange={e => this.handleChange(e)}
 					value={this.state.name}

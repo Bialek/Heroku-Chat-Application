@@ -7,6 +7,7 @@ class MessageForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {text: ''};
+		this.inputRef = React.createRef();
 	}
 
 	handleSubmit(e) {
@@ -30,6 +31,8 @@ class MessageForm extends Component {
 		return(
 			<Form onSubmit={e => this.handleSubmit(e)}>
 				<MessageInput
+					ref={this.inputRef}
+					onMouseEnter={() => {this.inputRef.current.focus()}}
 					onChange={e => this.changeHandler(e)}
 					value={this.state.text}
 					placeholder='Your Message text'
