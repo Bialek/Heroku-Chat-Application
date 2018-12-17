@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
-import styles from './css/App.css';
 import MessageForm from './Components/MessageForm.js';
 import MessageList from './Components/MessageList.js';
 import UsersList from './Components/UsersList.js';
 import UserForm from './Components/UserForm.js';
+
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle } from './Styled-Components/GlobalStyles';
+import { Container, Header, AppTitle, AppRoom, AppBody, Wrapper  } from './Styled-Components/Styles';
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
@@ -12,6 +16,16 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 library.add(faMoon, faSun)
 
 const socket = io('/');
+
+const light = {
+	PrimaryColor: '#162935',
+	Background: '#ccc'
+  };
+
+const dark = {
+	PrimaryColor: '#ccc',
+	Background: '#162935'
+  };
 
 class App extends Component {
 	constructor(props) {
@@ -22,9 +36,10 @@ class App extends Component {
 			text: '',
 			name: '',
 			color: '',
-			darkThema: false
+			Theme: 'light'
 		};
 	}
+	
 
 	componentDidMount = () => {
 		socket.on('message', message => this.messageReceive(message));
@@ -55,46 +70,49 @@ class App extends Component {
         this.setState({color});
 	}
 	
-	ThemaOnclickHandler = () => {
-		(!this.state.darkThema) ? this.setState({darkThema: true}) : this.setState({darkThema: false});
+	ThemeOnclickHandler = () => {
+		(this.state.Theme === 'light') ? this.setState({Theme: 'dark'}) : this.setState({Theme: 'light'});
 	}
 
 	render() { 
 		return this.state.name !== '' ? this.renderLayout () : this.renderUserForm()
 	}
 	
-	renderLayout() { console.log(this.state.darkThema);
+	renderLayout() { console.log(this.state.Theme);
 	
 		return (
-			<div className = {styles.App}>
-				<div className = {styles.Header}>
-					<div className = {styles.AppTitle}>
-						ChatLogo
-					</div>
-					<div className = {styles.AppRoom}>
-						Chat room 
-						<span onClick={this.ThemaOnclickHandler}>
-							{this.state.darkThema ? <FontAwesomeIcon icon='moon' /> : <FontAwesomeIcon icon='sun' />}
-						</span>
-					</div>
-				</div>
-				<div className = {styles.AppBody}>
-					<UsersList
-						users = {this.state.users}
-					/>
-					<div className = {styles.MessageWrapper}>
-						<MessageList
-							messages = {this.state.messages}
+			<ThemeProvider theme={this.state.Theme === 'light' ? light : dark }>
+				<Container>
+					<Header>
+						<AppTitle>
+							Heroku Chat Application
+						</AppTitle>
+						<AppRoom>
+							Chat room 
+							<span onClick={this.ThemeOnclickHandler}>
+								{this.state.Theme === 'light' ? <FontAwesomeIcon icon='sun' /> : <FontAwesomeIcon icon='moon' />}
+							</span>
+						</AppRoom>
+					</Header>
+					<AppBody>
+						<UsersList
+							users = {this.state.users}
 						/>
-						<MessageForm
-							onMessageSubmit = 
-								{ message => this.handleMessageSubmit(message)}
-								name = {this.state.name}
-								color = {this.state.color}
-						/>
-					</div>
-				</div>
-			</div>
+						<Wrapper>
+							<MessageList
+								messages = {this.state.messages}
+							/>
+							<MessageForm
+								onMessageSubmit = 
+									{ message => this.handleMessageSubmit(message)}
+									name = {this.state.name}
+									color = {this.state.color}
+							/>
+						</Wrapper>
+					</AppBody>
+					<GlobalStyle />
+				</Container>
+			</ThemeProvider>
 		);
 	}
 
