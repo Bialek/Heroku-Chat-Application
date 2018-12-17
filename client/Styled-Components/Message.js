@@ -11,7 +11,7 @@ export const MessageWrapper = styled.div`
 
 export const MessageText = styled.span`
     color: ${props => props.theme.PrimaryColor};
-    font-size: ${props => props.author ? '1.2em' : '1em'};
+    font-size: ${props => props.author ? '2.2em' : '2em'};
     font-weight: ${props => props.author ? '900' : '500'};
     display: block;
     word-wrap: break-word;

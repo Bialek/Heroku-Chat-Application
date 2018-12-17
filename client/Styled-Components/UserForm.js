@@ -14,10 +14,5 @@ export const LoginInput = styled.input`
     border: 0;
     border-bottom: 1px solid #ccc;
     width: 100%;
-    color: #ccc;
-    &:active, &:hover, &:target, &:visited {
-        border-bottom-color: black;
-        color: black;
-        outline: none;
-    }
+    color: #000;
 `

@@ -10,6 +10,7 @@ export const MessageInput = styled.input`
     padding: 20px;
     border: 0;
     width: 85%;
+    font-size: 2em;
 `
 
 export const MessageBtn = styled.button`
