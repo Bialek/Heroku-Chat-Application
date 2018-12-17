@@ -1,22 +1,20 @@
 import React from 'react';
 
-import styles from '../css/UsersList.css';
+import { Users, UsersOnline, UserItem } from '../Styled-Components/UsersList';
 
 const UsersList = props => (
-	<div className={styles.Users}>
-		<div className={styles.UsersOnline}>
+	<Users>
+		<UsersOnline>
 			{props.users.length} people online
-		</div>
-		<ul className={styles.UsersList}> {
-			props.users.map((user) => {
-				return (
-					<li key={user.id} className={styles.UserItem}>
-						{user.name}
-					</li>
-				);
-			})}
+		</UsersOnline>
+		<ul> 
+			{ props.users.map((user) => (
+				<UserItem key={user.id} >
+					{user.name}
+				</UserItem>
+			))}
 		</ul>
-	</div>
+	</Users>
 );
 
 export default UsersList;

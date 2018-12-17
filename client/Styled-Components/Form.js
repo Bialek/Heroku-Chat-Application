@@ -24,5 +24,5 @@ export const MessageBtn = styled.button`
     transition: all ease-in-out .3s;
     &:hover {
         background-color: #e5e5e5;
-    }
+    }   
 `
