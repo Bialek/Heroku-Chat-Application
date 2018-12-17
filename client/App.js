@@ -9,11 +9,11 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './Styled-Components/GlobalStyles';
 import { Container, Header, AppTitle, AppRoom, AppBody, Wrapper  } from './Styled-Components/Styles';
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoon, faSun, faPaperPlane, faComments, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faMoon, faSun)
+library.add(faMoon, faSun, faPaperPlane, faComments, faBars, faTimes)
 
 const socket = io('/');
 
@@ -36,7 +36,8 @@ class App extends Component {
 			text: '',
 			name: '',
 			color: '',
-			Theme: 'light'
+			Theme: 'light',
+			openUsersList: true,
 		};
 	}
 	
@@ -70,32 +71,34 @@ class App extends Component {
         this.setState({color});
 	}
 	
-	ThemeOnclickHandler = () => {
+	handlerTheme = () => {
 		(this.state.Theme === 'light') ? this.setState({Theme: 'dark'}) : this.setState({Theme: 'light'});
+	}
+
+	handleropenUsersList = () => {
+		(this.state.openUsersList) ? this.setState({openUsersList: false}) : this.setState({openUsersList: true});
 	}
 
 	render() { 
 		return this.state.name !== '' ? this.renderLayout () : this.renderUserForm()
 	}
 	
-	renderLayout() { console.log(this.state.Theme);
-	
+	renderLayout() {
 		return (
 			<ThemeProvider theme={this.state.Theme === 'light' ? light : dark }>
 				<Container>
 					<Header>
-						<AppTitle>
-							Heroku Chat Application
-						</AppTitle>
-						<AppRoom>
-							Chat room 
-							<span onClick={this.ThemeOnclickHandler}>
-								{this.state.Theme === 'light' ? <FontAwesomeIcon icon='sun' /> : <FontAwesomeIcon icon='moon' />}
-							</span>
-						</AppRoom>
+						<span onClick={this.handleropenUsersList}>
+							{this.state.openUsersList ? <FontAwesomeIcon icon='times' /> : <FontAwesomeIcon icon='bars' /> }
+						</span>
+						<h1>Heroku Chat Application </h1>
+						<span onClick={this.handlerTheme}>
+							{this.state.Theme === 'light' ? <FontAwesomeIcon icon='sun' /> : <FontAwesomeIcon icon='moon' />}
+						</span>
 					</Header>
 					<AppBody>
 						<UsersList
+							openUsersList = {this.state.openUsersList}
 							users = {this.state.users}
 						/>
 						<Wrapper>

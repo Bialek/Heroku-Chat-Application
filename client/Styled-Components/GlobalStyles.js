@@ -7,6 +7,10 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
     }
     body {
+        transition: all ease-in-out .3s;
         background-color: ${props => props.theme.Background};
+    }
+    svg {
+        margin: 0 10px;
     }
 `

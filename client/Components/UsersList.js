@@ -1,19 +1,19 @@
 import React from 'react';
 
-import { Users, UsersOnline, UserItem } from '../Styled-Components/UsersList';
+import { Users, UsersOnline, UserItem, UserList } from '../Styled-Components/UsersList';
 
 const UsersList = props => (
-	<Users>
+	<Users openUsersList={props.openUsersList}>
 		<UsersOnline>
 			{props.users.length} people online
 		</UsersOnline>
-		<ul> 
+		<UserList> 
 			{ props.users.map((user) => (
 				<UserItem key={user.id} >
 					{user.name}
 				</UserItem>
 			))}
-		</ul>
+		</UserList>
 	</Users>
 );
 

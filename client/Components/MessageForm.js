@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Form, MessageInput, MessageBtn  } from '../Styled-Components/Form';
+import { Form, MessageInput, MessageBtn  } from '../Styled-Components/MessageForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 class MessageForm extends Component {
@@ -35,6 +36,7 @@ class MessageForm extends Component {
 				/>
 				<MessageBtn type='submit'>
 					Send
+					<FontAwesomeIcon icon='paper-plane' />
 				</MessageBtn>
 			</Form>
 		);

@@ -12,27 +12,13 @@ export const Header = styled.div`
     align-items: center;
     border-bottom: 1px solid;
     border-color: ${props => props.theme.PrimaryColor};
-`
-
-export const AppTitle = styled.div`
-    display: inline-flex;
-    width: 200px;
-    border-right: 1px solid;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
-    border-right-color: ${props => props.theme.PrimaryColor};
-    color: ${props => props.theme.PrimaryColor};
-`
-
-export const AppRoom = styled.div`
-    display: inline-flex;
-    width: calc(100vw - 200px);
-    justify-content: center;
-    box-sizing: border-box;
     padding: 20px;
     justify-content: space-between;
     color: ${props => props.theme.PrimaryColor};
+    width: 100%;
+    span {
+        font-size: 1.5em;
+    }
 `
 
 export const AppBody = styled.div`

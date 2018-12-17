@@ -8,5 +8,5 @@ export const MessagesList = styled.div`
     width: calc(100vw - 200px);
     max-height: calc(100vh - 59px);
     padding: 20px;
-    overflow-y: scroll;
+    overflow-y: auto;
 `
